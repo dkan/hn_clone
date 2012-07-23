@@ -1,0 +1,11 @@
+<h1>Articles</h1>
+<table>
+<tr>
+  <th>Article Name</th>
+</tr>
+<% @articles.each do |article| %>
+  <tr>
+    <td><%= link_to(article.name, article.link) %></td>
+  </tr>
+<% end %>
+</table>
