@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
   def index
-    @articles = Article.all.reverse
+    @articles = Article.page(params[:page]).per(5)
   end
 
   def new
@@ -11,8 +11,10 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(params[:article])
     if @article.save
+      flash[:success] = "Thanks for submitting an article"
       redirect_to root_path
     else
+      flash[:error] = "Invalid Submission"
       render 'new'
     end
   end

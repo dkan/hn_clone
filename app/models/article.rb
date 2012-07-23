@@ -5,5 +5,4 @@ class Article < ActiveRecord::Base
 
   validates :url, :presence => true, :uniqueness => true, :format => { :with => URL_RULE, :message => 'Not a valid URL' }
 
-
 end
