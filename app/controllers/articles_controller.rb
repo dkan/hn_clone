@@ -17,6 +17,7 @@ class ArticlesController < ApplicationController
     @article[:user_id] = current_user.id
     if @article.save
       flash[:success] = "Thanks for submitting an article"
+      @article.votes.create(:user_id => current_user.id)
       redirect_to root_path
     else
       flash[:error] = "Invalid Submission"

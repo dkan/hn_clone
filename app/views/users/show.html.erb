@@ -3,6 +3,7 @@
 <% @articles.each do |article| %>
   <tr>
     <td><%= link_to(article.title, article.url) %></td>
+    <td><%= article.votes.length %></td>
     <td><%= link_to("Edit", edit_article_path(article)) if @user == current_user %></td>
   </tr>
 <% end %>

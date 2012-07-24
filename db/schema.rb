@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724180321) do
+ActiveRecord::Schema.define(:version => 20120724190543) do
 
   create_table "articles", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -31,5 +31,14 @@ ActiveRecord::Schema.define(:version => 20120724180321) do
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "voteable_id"
+    t.string   "voteable_type"
+    t.integer  "value"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
 end
