@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
   def index
-    @articles = Article.page(params[:page]).per(5)
+    @articles = Kaminari.paginate_array(Article.all.sort_by! { |article| article.score }).page(params[:page]).per(5)
   end
 
   def new
