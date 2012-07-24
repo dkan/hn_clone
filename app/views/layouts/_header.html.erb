@@ -1,0 +1,17 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <ul class="nav">
+        <li class="active">
+          <%= link_to 'HN Clone', root_path %>
+        </li>
+        <% if signed_in? %>
+          <li><%= link_to 'Sign Out', signout_path, :method => "delete" %></li>
+        <% else %>
+          <li><%= link_to 'Sign In', new_session_path %></li>
+          <li><%= link_to 'Sign Up', new_user_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
