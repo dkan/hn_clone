@@ -6,6 +6,7 @@
           <%= link_to 'HN Clone', root_path %>
         </li>
         <% if signed_in? %>
+          <li><%= link_to 'My Articles', user_path(current_user) %></li>
           <li><%= link_to 'Sign Out', signout_path, :method => "delete" %></li>
         <% else %>
           <li><%= link_to 'Sign In', new_session_path %></li>
