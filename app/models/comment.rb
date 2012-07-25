@@ -7,4 +7,12 @@ class Comment < ActiveRecord::Base
   has_many :votes, :as => :voteable
 
   validates_presence_of :body
+
+  def upvotes
+    self.votes.where(:value => 1)
+  end
+
+  def downvotes
+    self.votes.where(:value => -1)
+  end
 end

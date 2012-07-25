@@ -4,7 +4,7 @@
   <tr>
     <td><%= link_to(article.title, article.url) %></td>
     <td><%= pluralize(article.votes.length,'vote') %></td>
-    <td><%= link_to("Edit", edit_article_path(article)) if @user == current_user %></td>
+    <td><%= link_to("Edit", edit_article_path(article)) if @user == current_user && (Time.now - article.created_at < 900) %></td>
   </tr>
 <% end %>
 </table>

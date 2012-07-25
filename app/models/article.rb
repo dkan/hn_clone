@@ -15,4 +15,7 @@ class Article < ActiveRecord::Base
     return -(num_votes) / ((time_in_hours + 2) ** gravity)
   end
 
+  def top_level_comments
+    self.comments.where(:parent_comment_id => nil)
+  end
 end

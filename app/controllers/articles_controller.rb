@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
     @article[:user_id] = current_user.id
     if @article.save
       flash[:success] = "Thanks for submitting an article"
-      @article.votes.create(:user_id => current_user.id)
+      @article.votes.create(:user_id => current_user.id, :value => 1)
       redirect_to root_path
     else
       flash[:error] = "Invalid Submission"
@@ -33,6 +33,10 @@ class ArticlesController < ApplicationController
   def edit
     unless current_user == @article.user
       flash[:error] = "That article doesn't belong to you!"
+      redirect_to root_path
+    end
+    if Time.now - @article.created_at > 900
+      flash[:error] = "Can't edit after 15 minutes"
       redirect_to root_path
     end
   end

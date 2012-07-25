@@ -7,13 +7,4 @@
 
   <%= f.submit class: "btn btn-large btn-success"%>
 <% end %>
-
-
-<% @article.comments.each do |comment| %>
-  <p>
-      <%= comment.user.name unless comment.id.nil?  %>
-  <p>
-  </p>
-      <%= comment.body unless comment.id.nil?  %>
-  </p>
-<% end %>
+<%= render :partial => 'comment', :collection => @article.top_level_comments %>
