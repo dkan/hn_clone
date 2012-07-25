@@ -1,11 +1,11 @@
 class ArticlesController < ApplicationController
+  before_filter :find_article, :only => [:show, :edit, :update]
 
   def index
     @articles = Kaminari.paginate_array(Article.all.sort_by! { |article| article.score }).page(params[:page]).per(5)
   end
 
   def show
-    @article = Article.find_by_id(params[:id])
     @comment = @article.comments.new
   end
 
@@ -31,7 +31,6 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find_by_id(params[:id])
     unless current_user == @article.user
       flash[:error] = "That article doesn't belong to you!"
       redirect_to root_path
@@ -39,7 +38,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find_by_id(params[:id])
     if current_user == @article.user && @article.update_attributes(params[:article])
       flash[:success] = 'Article successfully updated'
       redirect_to user_path(current_user)
@@ -47,5 +45,11 @@ class ArticlesController < ApplicationController
       flash[:error] = "Invalid Edit"
       redirect_to edit_article_path(@article)
     end
+  end
+
+  private
+
+  def find_article
+    @article = Article.find_by_id(params[:id])
   end
 end

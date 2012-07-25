@@ -1,8 +1,7 @@
 class VotesController < ApplicationController
 
   def create
-    @vote = Vote.new(value: params[:value])
-    @vote.voteable = Article.find_by_id(params[:article])
+    @vote = Vote.new(params[:vote])
     @vote.user = current_user
     if @vote.save
       flash[:success] = 'Vote registered'

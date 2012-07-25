@@ -8,7 +8,7 @@
       <% if Vote.find_by_voteable_id_and_voteable_type_and_user_id(article.id, 'Article', current_user.id) %>
         <td>Upvoted</td>
       <% else %>
-        <td><%= link_to('Upvote!', "http://#{request.host}:#{request.port}/vote/#{article.id}/1") %></td>
+        <td><%= link_to('Upvote!', votes_path( :vote => {:voteable_id => article.id, :voteable_type => 'Article', :value => 1}), :method => :post) %></td>
       <% end %>
     <% end %>
     <td>| <%= link_to("#{article.comments.length} Comment(s)", article_path(article)) %></td>

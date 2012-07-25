@@ -7,7 +7,6 @@ HnClone::Application.routes.draw do
   resources :votes, only: [:create]
   resources :comments
 
-  match '/vote/:article/:value', to: 'votes#create'
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete

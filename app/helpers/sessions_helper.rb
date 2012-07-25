@@ -19,7 +19,6 @@ module SessionsHelper
   end
 
   def signed_in?
-    puts "CURRENT USER: #{current_user.inspect}"
     !current_user.nil?
   end
 end
