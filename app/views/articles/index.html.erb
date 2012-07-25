@@ -11,6 +11,7 @@
         <td><%= link_to('Upvote!', "http://#{request.host}:#{request.port}/vote/#{article.id}/1") %></td>
       <% end %>
     <% end %>
+    <td>| <%= link_to("#{article.comments.length} Comment(s)", article_path(article)) %></td>
   </tr>
 <% end %>
 </table>

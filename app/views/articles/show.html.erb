@@ -1,0 +1,19 @@
+<h1><%= link_to(@article.title, @article.url ) %></h1><br>
+<%= form_for @comment do |f| %>
+  <p>
+    <%= f.text_area :body, style: "height:100px; width: 500px;"%><br />
+  </p>
+  <%= f.hidden_field :article_id, :value => @comment.article_id %><br />
+
+  <%= f.submit class: "btn btn-large btn-success"%>
+<% end %>
+
+
+<% @article.comments.each do |comment| %>
+  <p>
+      <%= comment.user.name unless comment.id.nil?  %>
+  <p>
+  </p>
+      <%= comment.body unless comment.id.nil?  %>
+  </p>
+<% end %>

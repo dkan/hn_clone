@@ -3,6 +3,7 @@ class Article < ActiveRecord::Base
   URL_RULE = /^http/i
   belongs_to :user
   has_many :votes, :as => :voteable
+  has_many :comments
 
   validates :url, :presence => true, :uniqueness => true, :format => { :with => URL_RULE, :message => 'Not a valid URL' }
   validates_presence_of :user_id

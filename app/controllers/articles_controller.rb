@@ -4,6 +4,11 @@ class ArticlesController < ApplicationController
     @articles = Kaminari.paginate_array(Article.all.sort_by! { |article| article.score }).page(params[:page]).per(5)
   end
 
+  def show
+    @article = Article.find_by_id(params[:id])
+    @comment = @article.comments.new
+  end
+
   def new
     @article = Article.new
     unless signed_in?
