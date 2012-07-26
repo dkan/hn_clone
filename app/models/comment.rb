@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
   belongs_to :article
   belongs_to :user
   belongs_to :comment, :class_name => 'Comment'
-  has_many :comments
+  has_many :comments, :foreign_key => 'parent_comment_id'
   has_many :votes, :as => :voteable
 
   validates_presence_of :body

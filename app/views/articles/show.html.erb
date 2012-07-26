@@ -7,4 +7,7 @@
 
   <%= f.submit class: "btn btn-large btn-success"%>
 <% end %>
-<%= render :partial => 'comment', :collection => @article.top_level_comments %>
+
+<ul class="top-level comments">
+<%= render :partial => 'common/comment', :collection => @article.top_level_comments %>
+</ul>

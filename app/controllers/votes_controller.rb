@@ -8,7 +8,17 @@ class VotesController < ApplicationController
     else
       flash[:error] = "You can't vote twice"
     end
-    redirect_to root_path
+    redirect_to redirect_path
   end
 
+  private
+
+  def redirect_path
+    case @vote.voteable_type
+    when 'Article'
+      root_path
+    when 'Comment'
+      article_path(@vote.voteable.article)
+    end
+  end
 end
