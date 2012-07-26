@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
     self.comments.inject(0) { |count, comment| count + comment.upvotes.length }
   end
 
+  def can_downvote?
+    karma >= 100
+  end
+
   private
 
     def create_remember_token

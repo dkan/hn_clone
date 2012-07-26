@@ -6,7 +6,7 @@ class Article < ActiveRecord::Base
   has_many :comments
 
   validates :url, :presence => true, :uniqueness => true, :format => { :with => URL_RULE, :message => 'Not a valid URL' }
-  validates_presence_of :user_id
+  validates_presence_of :user_id, :title
 
   def score
     time_in_hours = (Time.now - self.created_at) / 3600

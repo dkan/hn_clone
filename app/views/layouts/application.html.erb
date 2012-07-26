@@ -11,7 +11,8 @@
     <%= render 'layouts/header'%>
 
     <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>"><%= value %>
+      <div class="alert alert-<%= key %>">
+        <%= value %>
         <a class="close" data-dismiss="alert">&#215;</a>
       </div>
     <% end %>

@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
       @comment.votes.create(:user_id => current_user.id, :value => 1)
       redirect_to article_path(@comment.article)
     else
-      flash[:error] = "Invalid Submission"
+      flash[:error] = "Comment can't be blank"
       redirect_to article_path(@comment.article)
     end
   end

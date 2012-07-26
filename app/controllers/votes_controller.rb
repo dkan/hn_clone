@@ -6,7 +6,7 @@ class VotesController < ApplicationController
     if @vote.save
       flash[:success] = 'Vote registered'
     else
-      flash[:error] = "You can't vote twice"
+      flash[:error] = @vote.errors.full_messages.first
     end
     redirect_to redirect_path
   end
