@@ -7,13 +7,23 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     @comment[:user_id] = current_user.id
-    if @comment.save
-      flash[:success] = "Thanks for commenting"
-      @comment.votes.create(:user_id => current_user.id, :value => 1)
-      redirect_to article_path(@comment.article)
-    else
-      flash[:error] = "Comment can't be blank"
-      redirect_to article_path(@comment.article)
+    respond_to do |format|
+      if @comment.save
+        @comment.votes.create(:user_id => current_user.id, :value => 1)
+        format.html do
+          flash[:success] = "Thanks for commenting"
+          redirect_to article_path(@comment.article)
+        end
+        format.js
+      else
+        format.html do
+          flash[:error] = "Comment can't be blank"
+          redirect_to article_path(@comment.article)
+        end
+        format.js
+      end
+
     end
   end
 end
+

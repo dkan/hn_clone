@@ -16,7 +16,7 @@ class Article < ActiveRecord::Base
   end
 
   def top_level_comments
-    self.comments.where(:parent_comment_id => nil).sort_by!(&:score)
+    self.comments.where(:parent_comment_id => nil).sort_by!(&:score).reverse
   end
 
   def upvotes
