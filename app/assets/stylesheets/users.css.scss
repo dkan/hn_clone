@@ -1,3 +1,20 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.check-box {
+    float:left;
+    margin-right:5px !important;
+}
+
+.errors {
+    color:red;
+}
+.errors h2{
+    font-size:14px;
+}
+.errors li{
+    list-style:none;
+}
+.errors ul{
+    margin-left:0;
+}

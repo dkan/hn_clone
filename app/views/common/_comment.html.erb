@@ -6,9 +6,9 @@
 <p>
   <%= pluralize(comment.upvotes.length, 'upvote')%> -
   <%= pluralize(comment.downvotes.length, 'downvote')%> -
-  <%= link_to('Reply', comment_path(comment)) %> -
+  <%= link_to('Reply ', comment_path(comment)) %>
   <% if signed_in? %>
-    <% if Vote.find_by_voteable_id_and_voteable_type_and_user_id(comment.id, 'Comment', current_user.id) %>
+     - <% if Vote.find_by_voteable_id_and_voteable_type_and_user_id(comment.id, 'Comment', current_user.id) %>
       Voted
     <% else %>
       <%= link_to('Upvote!', votes_path( :vote => {:voteable_id => comment.id, :voteable_type => 'Comment', :value => 1}), :method => :post) %> -

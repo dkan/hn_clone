@@ -23,6 +23,7 @@ end
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'bcrypt-ruby'
+gem 'devise'
 
 group :development do
   gem 'quiet_assets'

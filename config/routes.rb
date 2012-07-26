@@ -1,15 +1,13 @@
 HnClone::Application.routes.draw do
 
+  devise_for :users
+
   root :to => 'articles#index'
   resources :articles
-  resources :users
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :users, only: [:show]
   resources :votes, only: [:create]
   resources :comments
 
-  match '/signup',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

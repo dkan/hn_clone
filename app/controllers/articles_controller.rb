@@ -12,8 +12,8 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
     unless signed_in?
-      flash[:error] = 'You must be logged in to submit an article'
-      redirect_to signin_path
+      flash[:error] = 'Please sign in to submit an article'
+      redirect_to new_user_session_path
     end
   end
 
