@@ -15,4 +15,13 @@ class Comment < ActiveRecord::Base
   def downvotes
     self.votes.where(:value => -1)
   end
+
+  def score
+    #the most negative score appears first in the array
+    downvotes.length - upvotes.length
+  end
+
+  def comments_sorted_by_score
+    self.comments.sort_by!(&:score)
+  end
 end

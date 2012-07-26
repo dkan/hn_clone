@@ -12,5 +12,5 @@
   <%= f.submit class: "btn btn-large btn-success"%>
 <% end %>
 <ul class="top-level comments">
-<%= render :partial => 'common/comment', :collection => @original_comment.comments %>
+<%= render :partial => 'common/comment', :collection => @original_comment.comments_sorted_by_score %>
 </ul>

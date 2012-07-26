@@ -1,10 +1,11 @@
-<h1>Articles submitted by <%= @user.name %></h1>
+<h1><%= @user.name %> : <%= @user.karma %> Karma</h1>
+<h3>Submitted articles:</h3>
 <table width='100%'>
 <% @articles.each do |article| %>
   <tr>
     <td><%= link_to(article.title, article.url) %></td>
     <td><%= pluralize(article.votes.length,'vote') %></td>
-    <td><%= link_to("Edit", edit_article_path(article)) if @user == current_user && (Time.now - article.created_at < 900) %></td>
+    <td><%= link_to("Edit", edit_article_path(article)) if @user == current_user && !article.too_late_to_edit? %></td>
   </tr>
 <% end %>
 </table>

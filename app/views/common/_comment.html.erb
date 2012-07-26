@@ -1,6 +1,6 @@
 <li>
 <p>
-    <strong><%= comment.user.name %></strong><em> - <%= time_ago_in_words(comment.created_at) %> ago</em> -
+    <strong><%= link_to comment.user.name, user_path(comment.user) %></strong><em> - <%= time_ago_in_words(comment.created_at) %> ago</em> -
     <%= comment.body %>
 </p>
 <p>
@@ -19,5 +19,5 @@
 </li>
 
 <ul class="comments">
-  <%= render :partial => 'common/comment', :collection => comment.comments %>
+  <%= render :partial => 'common/comment', :collection => comment.comments_sorted_by_score %>
 </ul>

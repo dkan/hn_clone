@@ -35,7 +35,7 @@ class ArticlesController < ApplicationController
       flash[:error] = "That article doesn't belong to you!"
       redirect_to root_path
     end
-    if Time.now - @article.created_at > 900
+    if @article.too_late_to_edit?
       flash[:error] = "Can't edit after 15 minutes"
       redirect_to root_path
     end

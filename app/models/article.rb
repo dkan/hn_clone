@@ -16,6 +16,15 @@ class Article < ActiveRecord::Base
   end
 
   def top_level_comments
-    self.comments.where(:parent_comment_id => nil)
+    self.comments.where(:parent_comment_id => nil).sort_by!(&:score)
   end
+
+  def upvotes
+    self.votes.where(:value => 1)
+  end
+
+  def too_late_to_edit?
+    Time.now - self.created_at > 900
+  end
+
 end
