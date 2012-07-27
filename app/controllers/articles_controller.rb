@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_filter :find_article, :only => [:show, :edit, :update]
 
   def index
-    @articles = Kaminari.paginate_array(Article.all.sort_by! { |article| article.score }).page(params[:page]).per(5)
+    @articles = Kaminari.paginate_array(Article.non_flagged_articles.sort_by! { |article| article.score }).page(params[:page]).per(5)
   end
 
   def show

@@ -7,6 +7,8 @@ HnClone::Application.routes.draw do
   resources :users, only: [:show]
   resources :votes, only: [:create]
   resources :comments
+  resources :banned_users, only: [:create]
+  resources :flagged_articles, only: [:create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

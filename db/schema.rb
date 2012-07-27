@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726194712) do
+ActiveRecord::Schema.define(:version => 20120727224413) do
+
+  create_table "admins", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "articles", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -21,6 +27,12 @@ ActiveRecord::Schema.define(:version => 20120726194712) do
     t.integer  "user_id"
   end
 
+  create_table "banned_users", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.text     "body"
@@ -28,6 +40,12 @@ ActiveRecord::Schema.define(:version => 20120726194712) do
     t.integer  "parent_comment_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "flagged_articles", :force => true do |t|
+    t.integer  "article_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

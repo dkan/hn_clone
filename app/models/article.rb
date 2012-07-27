@@ -4,9 +4,16 @@ class Article < ActiveRecord::Base
   belongs_to :user
   has_many :votes, :as => :voteable
   has_many :comments
+  has_one  :flagged_article
 
   validates :url, :presence => true, :uniqueness => true, :format => { :with => URL_RULE, :message => 'Not a valid URL' }
   validates_presence_of :user_id, :title
+
+  def self.non_flagged_articles
+    Article.find_by_sql(
+      "SELECT * FROM articles WHERE articles.id NOT IN
+                (SELECT article_id FROM flagged_articles)")
+  end
 
   def score
     time_in_hours = (Time.now - self.created_at) / 3600
@@ -25,6 +32,10 @@ class Article < ActiveRecord::Base
 
   def too_late_to_edit?
     Time.now - self.created_at > 900
+  end
+
+  def flagged?
+    self.flagged_article
   end
 
 end

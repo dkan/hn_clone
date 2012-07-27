@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   has_many :articles
   has_many :comments
+  has_one  :admin
+  has_one  :banned_user
 
   def karma
     self.articles.inject(0) { |count, article| count + article.upvotes.length } +
@@ -20,6 +22,23 @@ class User < ActiveRecord::Base
   def can_downvote?
     karma >= 100
   end
+
+  def admin?
+    self.admin
+  end
+
+  def banned?
+    self.banned_user
+  end
+
+  def active_for_authentication?
+    super && !self.banned?
+  end
+
+  def inactive_message
+    !self.banned? ? super : "You've been banned!"
+  end
+
 
   private
 
