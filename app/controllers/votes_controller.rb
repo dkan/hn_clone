@@ -3,12 +3,21 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(params[:vote])
     @vote.user = current_user
-    if @vote.save
-      flash[:success] = 'Vote registered'
-    else
-      flash[:error] = @vote.errors.full_messages.first
+    respond_to do |format|
+      if @vote.save
+        format.html do
+          flash[:success] = 'Vote registered'
+          redirect_to redirect_path
+        end
+        format.js
+      else
+        format.html do
+          flash[:error] = @vote.errors.full_messages.first
+          redirect_to redirect_path
+        end
+        format.js
+      end
     end
-    redirect_to redirect_path
   end
 
   private

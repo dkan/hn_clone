@@ -20,7 +20,9 @@ class CommentsController < ApplicationController
           flash[:error] = "Comment can't be blank"
           redirect_to article_path(@comment.article)
         end
-        format.js
+        format.js {
+          render :partial => 'error'
+        }
       end
 
     end
