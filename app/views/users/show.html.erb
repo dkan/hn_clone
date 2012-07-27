@@ -1,4 +1,14 @@
+
+<% if signed_in? && current_user.admin? %>
+  <% if @user.banned? %>
+    <p class="alert alert-error">User Banned!</p>
+  <% else %>
+    <p>Admin Actions: <%= link_to('BAN USER', banned_users_path(:banned_user => {:user_id => @user.id}), :method => 'POST') %></p>
+  <% end %>
+<% end %>
+
 <h1><%= @user.name %> : <%= @user.karma %> Karma</h1>
+
 <h3>Submitted articles:</h3>
 <table width='100%'>
 <% @articles.each do |article| %>

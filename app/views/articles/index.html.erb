@@ -12,6 +12,9 @@
       <% end %>
     <% end %>
     <td><%= link_to(pluralize(article.comments.length, 'comment'), article_path(article)) %></td>
+    <% if signed_in? && current_user.admin? %>
+      <td><%= link_to 'Flag Article', flagged_articles_path(:flagged_article => {:article_id => article.id}), :method => 'POST' %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
