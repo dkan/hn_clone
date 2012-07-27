@@ -17,8 +17,7 @@ class Comment < ActiveRecord::Base
   end
 
   def score
-    #the most negative score appears first in the array
-    downvotes.length - upvotes.length
+    upvotes.length - downvotes.length
   end
 
   def comments_sorted_by_score

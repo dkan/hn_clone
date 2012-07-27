@@ -1,6 +1,9 @@
+<div class="potential-error"></div>
+
 <h1><%= link_to(@article.title, @article.url ) %></h1>
 <p><em>posted by</em> <%= link_to(@article.user.name, user_path(@article.user)) %> <%= time_ago_in_words(@article.created_at) %> ago</p><br />
-<%= form_for @comment do |f| %>
+
+<%= form_for @comment, :remote => true do |f| %>
   <p>
     <%= f.text_area :body, style: "height:100px; width: 500px;"%><br />
   </p>

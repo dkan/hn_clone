@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    unless current_user == @article.user
+    if current_user != @article.user
       flash[:error] = "That article doesn't belong to you!"
       redirect_to root_path
     end
