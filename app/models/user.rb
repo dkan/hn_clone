@@ -8,10 +8,9 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :is_admin, :password, :password_confirmation, :remember_me
   has_many :articles
   has_many :comments
-  has_one  :admin
   has_one  :banned_user
 
   def karma
@@ -24,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    self.admin
+    self.is_admin
   end
 
   def banned?
