@@ -13,12 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20120727224413) do
 
-  create_table "admins", :force => true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "articles", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -50,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20120727224413) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
+    t.string   "is_admin"
     t.string   "password_digest"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
