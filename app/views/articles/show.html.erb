@@ -3,13 +3,15 @@
 <h1><%= link_to(@article.title, @article.url ) %></h1>
 <p><em>posted by</em> <%= link_to(@article.user.name, user_path(@article.user)) %> <%= time_ago_in_words(@article.created_at) %> ago</p><br />
 
-<%= form_for @comment, :remote => true do |f| %>
-  <p>
-    <%= f.text_area :body, style: "height:100px; width: 500px;"%><br />
-  </p>
-  <%= f.hidden_field :article_id, :value => @comment.article_id %><br />
+<% if signed_in? %>
+    <%= form_for @comment, :remote => true do |f| %>
+      <p>
+        <%= f.text_area :body, style: "height:100px; width: 500px;"%><br />
+      </p>
+      <%= f.hidden_field :article_id, :value => @comment.article_id %><br />
 
-  <%= f.submit class: "btn btn-large btn-success"%>
+      <%= f.submit class: "btn btn-large btn-success"%>
+    <% end %>
 <% end %>
 
 <ul class="top-level comments">

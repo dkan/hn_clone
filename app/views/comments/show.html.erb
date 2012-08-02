@@ -2,7 +2,7 @@
     <strong><%= @original_comment.user.name %></strong><em> - <%= time_ago_in_words(@original_comment.created_at) %> ago</em> -
     <%= @original_comment.body %>
 </p>
-
+<% if signed_in? %>
 <%= form_for @comment do |f| %>
   <p>
     <%= f.text_area :body, style: "height:100px; width: 500px;"%><br />
@@ -10,6 +10,7 @@
   <%= f.hidden_field :article_id, :value => @original_comment.article_id %><br />
   <%= f.hidden_field :parent_comment_id, :value => @original_comment.id %><br />
   <%= f.submit class: "btn btn-large btn-success"%>
+<% end %>
 <% end %>
 <ul class="top-level comments">
 <%= render :partial => 'common/comment', :collection => @original_comment.comments_sorted_by_score %>

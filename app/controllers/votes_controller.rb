@@ -9,13 +9,13 @@ class VotesController < ApplicationController
           flash[:success] = 'Vote registered'
           redirect_to redirect_path
         end
-        format.js
+        format.js { render :action => 'vote' }
       else
         format.html do
           flash[:error] = @vote.errors.full_messages.first
           redirect_to redirect_path
         end
-        format.js
+        format.js { render :partial => 'error'}
       end
     end
   end

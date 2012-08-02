@@ -1,5 +1,8 @@
 class CommentsController < ApplicationController
   def show
+    if !signed_in?
+        flash.now[:error] = "Sign in to reply"
+    end
     @original_comment = Comment.find_by_id(params[:id])
     @comment = Comment.new
   end

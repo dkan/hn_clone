@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120727224413) do
+ActiveRecord::Schema.define(:version => 20120802184947) do
+
+  create_table "admins", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "articles", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -42,9 +48,14 @@ ActiveRecord::Schema.define(:version => 20120727224413) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "polls", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "is_admin"
     t.string   "password_digest"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
@@ -59,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20120727224413) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "is_admin"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
