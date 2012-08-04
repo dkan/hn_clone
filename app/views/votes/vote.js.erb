@@ -1,2 +1,6 @@
 $('<%= "#comment-#{@vote.voteable.id}" %>').html(
     "<%=j render(:partial =>'common/comment', :locals => {:comment => @vote.voteable }) %>")
+
+$('.potential-message').html(
+    "<div class='alert alert-success'>Thanks for voting<a class='close' data-dismiss='alert'>&#215;</a></div>"
+    )
