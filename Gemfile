@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'bcrypt-ruby'
 gem 'devise'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'quiet_assets'
