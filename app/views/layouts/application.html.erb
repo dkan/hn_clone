@@ -9,15 +9,17 @@
 <body>
   <div class="container">
     <%= render 'layouts/header'%>
-
+    
     <% flash.each do |key, value| %>
-      <% if key != "timedout"%>
+        <% if key != "timedout" %>
         <div class="alert alert-<%= key %>">
             <%= value %>
             <a class="close" data-dismiss="alert">&#215;</a>
         </div>
-      <% end %>
+        <% end %>
     <% end %>
+
+    
     <div class="potential-message"></div>
 
     <%= yield %>

@@ -11,3 +11,7 @@
  *= require_self
  *= require_tree .
  */
+
+div.alert-timedout {
+	display:none !important;
+}
