@@ -15,3 +15,7 @@
 div.alert-timedout {
 	display:none !important;
 }
+
+p input {
+	color:black !important;
+}
