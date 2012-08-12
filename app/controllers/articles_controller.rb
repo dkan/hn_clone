@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
     def index
         respond_to do |format|
             format.html {
-                @articles = Kaminari.paginate_array(Article.non_flagged_articles.sort_by! { |article| article.score }).page(params[:page]).per(5)
+                @articles = Kaminari.paginate_array(Article.non_flagged_articles.sort_by! { |article| article.score }).page(params[:page]).per(20)
             }
             format.json {
                 render :json => Article.non_flagged_articles.sort_by! { |article| article.score }
