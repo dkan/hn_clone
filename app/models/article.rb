@@ -7,8 +7,8 @@ class Article < ActiveRecord::Base
   has_one  :flagged_article
 
   validates :url, :presence => true, :uniqueness => true, :format => { :with => URL_RULE, :message => 'Not a valid URL' }
-  validates_presence_of :user_id, :title
-
+  validates_presence_of :user_id
+  validates :title, :presence => true, :length => { :maximum => 150 }
   def self.non_flagged_articles
     Article.find_by_sql(
       "SELECT * FROM articles WHERE articles.id NOT IN

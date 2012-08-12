@@ -1,18 +1,18 @@
 <table width="100%">
 <% @articles.each do |article| %>
   <tr>
-    <td><%= link_to(article.title, article.url) %> - <em>posted by</em> <%= link_to(article.user.name, user_path(article.user)) %> <%= time_ago_in_words(article.created_at) %> ago<br /></td>
-    <td><%= pluralize(article.votes.length, 'vote') %></td>
+    <td><%= link_to(article.title, article.url) %><p><em>posted by</em> <%= link_to(article.user.name, user_path(article.user)) %> <%= time_ago_in_words(article.created_at) %> ago - 
+        <%= pluralize(article.votes.length, 'point') %> | 
     <% if signed_in? %>
       <% if Vote.find_by_voteable_id_and_voteable_type_and_user_id(article.id, 'Article', current_user.id) %>
-        <td>Upvoted</td>
+        Upvoted
       <% else %>
-        <td><%= link_to('Upvote!', votes_path( :vote => {:voteable_id => article.id, :voteable_type => 'Article', :value => 1}), :method => :post) %></td>
+        <%= link_to('Upvote!', votes_path( :vote => {:voteable_id => article.id, :voteable_type => 'Article', :value => 1}), :method => :post) %>
       <% end %>
     <% end %>
-    <td><%= link_to(pluralize(article.comments.length, 'comment'), article_path(article)) %></td>
+     | <%= link_to(pluralize(article.comments.length, 'comment'), article_path(article)) %>
     <% if signed_in? && current_user.admin? %>
-      <td><%= link_to 'Flag Article', flagged_articles_path(:flagged_article => {:article_id => article.id}), :method => 'POST' %></td>
+       | <%= link_to 'Flag Article', flagged_articles_path(:flagged_article => {:article_id => article.id}), :method => 'POST' %></p></td>
     <% end %>
   </tr>
 <% end %>
