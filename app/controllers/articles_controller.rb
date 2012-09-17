@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
             }
         end
     end
-    
+    #testing comment
     def show
         @comment = @article.comments.new
     end
